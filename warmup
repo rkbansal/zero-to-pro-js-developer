@@ -1,0 +1,92 @@
+So here we are going to look at some of the basic but most useful concepts of JavaScript. I will first try to provide
+definition in simplest form.
+
+Variables - 2 types (var & let)
+
+Using var and let keywords:
+var maintains the functional and global scope but let maintains the block scope. Got it, Well Done! Jump to the next one.
+If you didn't got it, then don't worry just keep up with me and you are gonna be master in it.
+
+Cheat: functional scope means scope inside of a function, and block scope means scope inside of a block means curly braces
+ie. {}
+Lets try to understand it by an example:
+
+for(var i=0; i<10; i++){
+  console.log(i);  // output: 0,1,2,3,4,5,6,7,8,9
+}
+console.log(i); // output: 10
+
+
+for(let i=0; i<10; i++){
+  console.log(i);  // output: 0,1,2,3,4,5,6,7,8,9
+}
+console.log(i); // output: ReferenceError: i is not defined
+
+Look for the output of both the cases:
+
+In first program, i is defined with var, so it has functional/global scope means they are not bounded by curly braces ie. {}
+which is basically the block scope. So the value of i available outside of the for loop.
+
+But in the second program, i is defined with let, so it has block scope means it will be bounded by the curly braces ie. {}.
+So the value of i can't be available outside of the for loop block, hence throwing error when trying to console i outside.
+
+
+Constant
+Using const keyword, we can define the constant. const always has block scope, but the only difference between const and let
+is that in case of const we can't use the assignment operator more than once. Got it, Cool! Not, Just take a look the example.
+
+let name = "raj"
+name = "bansal" // successful, means name is overrided with bansal from raj.
+
+const name = "raj"
+name = "bansal" // TypeError: Assignment to constant variable
+
+See in first one the value name is updated from raj to bansal but in case of second one we are getting  TypeError: Assignment
+to constant variable means we can't change the value of the constants defined by the const keyword.
+
+But wait a minute what about const a = {name:"raj"} ? Can we change the value of name inside the object a? Lets see.
+
+const a = {name:"raj"}
+a = {name: "bansal"} // TypeError: Assignment to constant variable
+
+const a = {name:"raj"}
+a.name = "bansal" // value gets updated, No error
+
+In the first case, we are trying to re-define the value of const a using assignment operator i.e, = . Hence throwing the
+error. But in case of Second, we are updating the property of the const a using dot operator and name by itself is not
+const, hence its value will get updated.
+The same is true for Arrays ie.
+const a = ["cat", "dog"];
+a[0] = "tiger" // will update cat to tiger i.e., ["tiger", "dog"]
+a[1] = "lion" // will update dog to lion ie., ["tiger", "lion"]
+a.push("peacock") // will push peacock to a ie., ["tiger", "lion", "peacock"]
+a.pop() // will pop peacock from a ie., ["tiger", "lion"]
+a.pop() // will pop lion from a ie., ["tiger"]
+a.pop() // will pop tiger from a ie., []
+
+Conditions:
+Available conditions right now if, if-else, switch, ternary.
+
+if(true){
+  console.log("true"); // will get execute
+}
+
+if(9){ // any number otherthan 0 will be treated as true, hence will go inside the if condition
+  console.log("will get execute"); // will get execute
+}
+
+but,
+
+if(0){ // 0 will treated as false, hence will not go inside if condition
+  console.log("will not get execute"); // will not get execute
+}
+
+if("abc"){ // any string will be treated as true except the empty string ie., ""
+  console.log("will get execute"); // will get execute
+}
+
+if(""){ // empty string will be treated as false, hence will not execute code inside the if condition
+  console.log("will not get execute"); // will not get execute
+}
+
+the same is true for ternary operator.
